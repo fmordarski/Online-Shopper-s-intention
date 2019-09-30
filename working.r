@@ -5,16 +5,22 @@ library(lubridate)
 library(caret)
 library(randomForest)
 
+# provide below path to working directory
 setwd("C:/Users/Uzytkownik/Documents/R courses edX/Harvard/capstone/own project")
+
+#loading data
 data <- read.csv("online_shoppers_intention.csv",header=TRUE)
 
 
 # removing any rows with NA value
 data <- data[complete.cases(data), ]
 
-y <- data$Revenue
+# change type of 'Revenue' from boolean to factor
 
 data$Revenue <- as.factor(data$Revenue)
+
+y <- data$Revenue
+
 # Create trainset and test set 
 set.seed(1)
 test_index <- createDataPartition(y, times = 1, p = 0.1, list = FALSE)
