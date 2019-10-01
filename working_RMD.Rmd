@@ -23,6 +23,7 @@ if(!require(ggplot2)) install.packages("data.table", repos = "http://cran.us.r-p
 if(!require(kableExtra)) install.packages("caret", repos = "http://cran.us.r-project.org")
 if(!require(rmarkdown)) install.packages("data.table", repos = "http://cran.us.r-project.org")
 if(!require(tinytex)) install.packages("data.table", repos = "http://cran.us.r-project.org")
+if(!require(reshape2)) install.packages("data.table", repos = "http://cran.us.r-project.org")
 
 ```
 
@@ -133,3 +134,34 @@ kable(table_freq, align = 'c', caption = "What percentage of visitors generate r
 ```
 
 Above table shows us what percentage of visitors generate revenue or not.
+
+Below we can see pie chart which shows us the above data in a pleasant view.
+\newline
+\newline
+
+```{r ,echo = FALSE,message=FALSE}
+# pie chart
+
+bp <- ggplot(melt(table_freq), aes(x="",y=value,fill=variable)) +
+  geom_bar(width = 1, stat = "identity") +
+  ggtitle("Did the visitor generate revenue?")
+
+pie <- bp + coord_polar("y", start=0)
+
+# create blank theme
+blank_theme <- theme_minimal()+
+  theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  panel.border = element_blank(),
+  panel.grid=element_blank(),
+  axis.ticks = element_blank(),
+  plot.title=element_text(size=14, face="bold")
+  )
+#create nice chart
+
+pie + scale_fill_brewer("Legend", label = c(FreqPercTrue = "Yes", FreqPercFalse = "No")) + 
+  blank_theme +
+  theme(axis.text.x=element_blank()) 
+
+```

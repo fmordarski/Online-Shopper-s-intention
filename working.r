@@ -5,7 +5,7 @@ if(!require(lubridate)) install.packages("caret", repos = "http://cran.us.r-proj
 if(!require(dplyr)) install.packages("data.table", repos = "http://cran.us.r-project.org")
 if(!require(ggplot2)) install.packages("data.table", repos = "http://cran.us.r-project.org")
 if(!require(tinytex)) install.packages("data.table", repos = "http://cran.us.r-project.org")
-
+if(!require(reshape2)) install.packages("data.table", repos = "http://cran.us.r-project.org")
 # Introduction
 
 ## provide below path to working directory
